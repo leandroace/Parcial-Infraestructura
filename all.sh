@@ -15,12 +15,13 @@
 #
 
 # Iterar sobre todos los archivos PNG en el directorio actual
-for INPUT_PNG in *.png; do
-    echo "Procesando $INPUT_PNG..."
-    TEMP_FILE="${INPUT_PNG%.png}.bin"
+
+for INPUT_JPG in *.jpg; do
+    echo "Procesando $INPUT_JPG..."
+    TEMP_FILE="${INPUT_JPG%.jpg}.bin"
     
-    # Convertir de PNG a binario
-    python3 fromPNG2Bin.py ${INPUT_PNG}
+    # Convertir de JPG a binario
+    python3 fromPNG2Bin.py ${INPUT_JPG}
     
     # Aplicar el filtro con el programa en C
     ./main ${TEMP_FILE}
@@ -29,4 +30,4 @@ for INPUT_PNG in *.png; do
     python3 fromBin2PNG.py ${TEMP_FILE}.new
 done
 
-echo "Procesamiento completado para todas las imágenes."
+echo "Procesamiento completado para todas las imágenes."echo "Procesamiento completado para todas las imágenes."

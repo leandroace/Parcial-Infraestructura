@@ -85,16 +85,17 @@ void guardarImagen(int *imagen, int width, int height) {
 }
 
 
-// Función para aplicar el filtro de Sobel con OpenMP
+
 void aplicarFiltro(int *imagen, int *imagenProcesada, int width, int height) {
-    // Definición de las máscaras de Sobel para la detección de bordes
-    // Gx y Gy son matrices que se usan para calcular los gradientes en los ejes x e y.
+ 
     int Gx[3][3] = {{-1, 0, 1}, 
                     {-2, 0, 2}, 
                     {-1, 0, 1}};
     int Gy[3][3] = {{-1, -2, -1}, 
                     {0, 0, 0}, 
                     {1, 2, 1}};
+
+    omp_set_num_threads(16); // Configura el número de hilos a 16. Se comenta esta linea para usar los hilos del CPU.
 
     // La directiva #pragma omp parallel for indica a OpenMP que paralelice el bucle
     // Esto significa que cada iteración del bucle externo (por cada fila de la imagen) puede ejecutarse en paralelo.
